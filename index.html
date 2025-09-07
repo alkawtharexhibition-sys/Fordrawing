@@ -71,24 +71,27 @@ body { font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background:v
 .contact p { text-align:center; font-size:1.2rem; line-height:2; }
 .contact a { color:var(--whatsapp-green); text-decoration:none; font-weight:bold; }
 
-/* Responsive */
-@media (max-width: 992px) {
-    .hero-content h1 { font-size:3.5rem; }
-    .hero-content p { font-size:1.3rem; }
-}
-
+/* Responsive for Mobile */
 @media (max-width: 768px) {
     .nav-menu { display:none; }
     .hamburger { display:block; }
-    .hero-content h1 { font-size:2.8rem; }
-    .hero-content p { font-size:1.2rem; }
-    .products-grid { grid-template-columns:1fr; }
-}
 
-@media (max-width: 480px) {
+    /* تصغير النصوص */
     .hero-content h1 { font-size:2.2rem; }
-    .hero-content p { font-size:1rem; }
-    .cta-button { padding:1rem 2rem; font-size:1rem; }
+    .hero-content p { font-size:1rem; margin-bottom:1.5rem; }
+    .cta-button { padding:0.8rem 1.8rem; font-size:1rem; }
+
+    .product-section .section-title { font-size:1.8rem; }
+    .product-section .section-underline { width:60px; height:3px; }
+    .products-grid { grid-template-columns:1fr; gap:1rem; padding:0 1rem; }
+
+    .product-card { padding:0.8rem; }
+    .product-card img { height:120px; }
+    .product-card span { font-size:0.9rem; }
+
+    .contact p { font-size:1rem; }
+    .side-menu { width:220px; padding:1.5rem; gap:1.5rem; }
+    .side-menu a { font-size:1rem; }
 }
 </style>
 </head>
@@ -120,7 +123,6 @@ body { font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background:v
     <a href="#contact" class="scroll-link">التواصل</a>
 </div>
 
-<!-- Hero Section -->
 <section class="hero" id="home">
     <div class="hero-content">
         <h1>فن أصيل بريشة محترفة</h1>
@@ -129,12 +131,10 @@ body { font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background:v
     </div>
 </section>
 
-<!-- Products Section -->
 <section class="products" id="products">
-<!-- هنا يمكن إضافة أقسام المنتجات كما بالكود السابق -->
+<!-- الأقسام والمنتجات كما بالكود السابق -->
 </section>
 
-<!-- Contact Section -->
 <section class="contact" id="contact">
     <div class="categories-container">
         <h2 class="section-title">تواصل معنا</h2>
@@ -157,7 +157,7 @@ links.forEach(link => {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         target.scrollIntoView({behavior:'smooth'});
-        sideMenu.classList.remove('open'); // إغلاق القائمة الجانبية بعد اختيار
+        sideMenu.classList.remove('open');
     });
 });
 
