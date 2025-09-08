@@ -29,18 +29,16 @@ body { font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background:v
 .logo { font-size:2.2rem; font-weight:700; display:flex; align-items:center; gap:0.5rem; letter-spacing:-0.5px; position:relative; }
 .logo i { background: linear-gradient(45deg, var(--accent-blue), var(--accent-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 .logo span { position:absolute; bottom:-18px; left:0; font-size:0.8rem; color:var(--accent-purple); font-weight:500; }
+
+/* Navigation */
 .nav-menu { display:flex; list-style:none; gap:2rem; transition: transform 0.3s ease; }
 .nav-menu li a { color:var(--white); text-decoration:none; padding:0.8rem 1.5rem; border-radius:30px; transition: all 0.3s ease; font-weight:500; position:relative; overflow:hidden; }
 .nav-menu li a::before { content:''; position:absolute; top:0; left:-100%; width:100%; height:100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition:left 0.5s; }
 .nav-menu li a:hover::before { left:100%; }
 .nav-menu li a:hover { background: rgba(255,255,255,0.1); transform: translateY(-2px); }
-.cart-icon { position:relative; font-size:1.6rem; cursor:pointer; padding:0.8rem; border-radius:50%; transition: all 0.3s ease; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); }
-.cart-icon:hover { background: rgba(255,255,255,0.2); transform: scale(1.1); }
-.cart-count { position:absolute; top:0; right:0; background:var(--accent-red); color:var(--white); border-radius:50%; width:22px; height:22px; font-size:0.75rem; display:flex; align-items:center; justify-content:center; font-weight:bold; animation:pulse 2s infinite; }
-@keyframes pulse { 0%{transform:scale(1);} 50%{transform:scale(1.1);} 100%{transform:scale(1);} }
 
 /* Hamburger Menu */
-.hamburger { display:none; font-size:2rem; cursor:pointer; color:var(--white); background:none; border:none; }
+.hamburger { display:none; font-size:2rem; cursor:pointer; color:var(--white); background:none; border:none; transition:transform 0.3s ease; }
 .side-menu { position:fixed; top:0; right:-250px; width:250px; height:100%; background:var(--secondary-black); color:var(--white); padding:2rem 1rem; display:flex; flex-direction:column; gap:2rem; transition: right 0.3s ease; z-index:9999; }
 .side-menu a { color:var(--white); text-decoration:none; font-size:1.2rem; font-weight:500; }
 .side-menu.open { right:0; }
@@ -74,13 +72,17 @@ body { font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background:v
 /* Responsive for Mobile */
 @media (max-width: 768px) {
     .nav-menu { display:none; }
-    .hamburger { display:block; }
+    .hamburger { display:block; font-size:1.6rem; }
 
-    /* تصغير النصوص */
+    /* إزالة كلمة "الرسم اليدوي" */
+    .logo span { display:none; }
+
+    /* Hero */
     .hero-content h1 { font-size:2.2rem; }
     .hero-content p { font-size:1rem; margin-bottom:1.5rem; }
     .cta-button { padding:0.8rem 1.8rem; font-size:1rem; }
 
+    /* Products */
     .product-section .section-title { font-size:1.8rem; }
     .product-section .section-underline { width:60px; height:3px; }
     .products-grid { grid-template-columns:1fr; gap:1rem; padding:0 1rem; }
@@ -89,6 +91,7 @@ body { font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background:v
     .product-card img { height:120px; }
     .product-card span { font-size:0.9rem; }
 
+    /* Contact */
     .contact p { font-size:1rem; }
     .side-menu { width:220px; padding:1.5rem; gap:1.5rem; }
     .side-menu a { font-size:1rem; }
@@ -112,7 +115,6 @@ body { font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background:v
         </ul>
     </nav>
     <button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
-    <div class="cart-icon" onclick="toggleCart()"><i class="fas fa-shopping-cart"></i><span class="cart-count" id="cartCount">0</span></div>
 </div>
 </header>
 
@@ -161,13 +163,11 @@ links.forEach(link => {
     });
 });
 
-function toggleCart() { alert('هنا سيتم فتح السلة'); }
-
 const hamburger = document.getElementById('hamburger');
 const sideMenu = document.getElementById('sideMenu');
-hamburger.addEventListener('click', () => {
-    sideMenu.classList.toggle('open');
-});
+hamburger.addEventListener('click', () => { sideMenu.classList.toggle('open'); });
+
+function toggleCart() { alert('هنا سيتم فتح السلة'); }
 </script>
 </body>
 </html>
