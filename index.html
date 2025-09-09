@@ -10,89 +10,142 @@
 :root {
     --primary-black: #1a1a1a;
     --secondary-black: #2d2d2d;
-    --dark-gray: #404040;
     --light-gray: #f5f5f5;
     --white: #ffffff;
     --accent-blue: #3498db;
-    --accent-red: #e74c3c;
-    --accent-green: #27ae60;
-    --accent-orange: #f39c12;
     --accent-purple: #9b59b6;
-    --whatsapp-green: #ac0000;
+    --accent-red: #e74c3c;
+    --accent-orange: #f39c12;
 }
-
 * { margin:0; padding:0; box-sizing:border-box; }
-body { font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background:var(--white); color:var(--primary-black); line-height:1.6; }
+body { font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background:var(--white); color:var(--primary-black); }
 
 /* Header */
-.header { background: linear-gradient(135deg, var(--primary-black), var(--secondary-black)); color: var(--white); padding:1rem 0; position: sticky; top:0; z-index:1000; box-shadow:0 4px 20px rgba(0,0,0,0.3); }
+.header { background: linear-gradient(135deg, var(--primary-black), var(--secondary-black)); color: var(--white); padding:1rem 0; position: sticky; top:0; z-index:1000; }
 .nav-container { max-width: 1200px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; padding:0 2rem; }
-.logo { font-size:2.2rem; font-weight:700; display:flex; align-items:center; gap:0.5rem; letter-spacing:-0.5px; position:relative; }
+.logo { font-size:2.2rem; font-weight:700; display:flex; align-items:center; gap:0.5rem; }
 .logo i { background: linear-gradient(45deg, var(--accent-blue), var(--accent-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.logo span { display:none; }
 
 /* Navigation */
-.nav-menu { display:flex; list-style:none; gap:2rem; transition: transform 0.3s ease; }
-.nav-menu li a { color:var(--white); text-decoration:none; padding:0.8rem 1.5rem; border-radius:30px; transition: all 0.3s ease; font-weight:500; position:relative; overflow:hidden; }
-.nav-menu li a::before { content:''; position:absolute; top:0; left:-100%; width:100%; height:100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition:left 0.5s; }
-.nav-menu li a:hover::before { left:100%; }
-.nav-menu li a:hover { background: rgba(255,255,255,0.1); transform: translateY(-2px); }
+.nav-menu { display:flex; list-style:none; gap:2rem; }
+.nav-menu li a { color:var(--white); text-decoration:none; padding:0.8rem 1.5rem; border-radius:30px; font-weight:500; position:relative; transition:color 0.3s ease; }
+.nav-menu li a::after {
+  content:'';
+  position:absolute;
+  bottom:-5px;
+  left:50%;
+  transform:translateX(-50%) scaleX(0);
+  width:70%;
+  height:2px;
+  background:linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+  transition:transform 0.3s ease;
+}
+.nav-menu li a:hover { color:var(--accent-orange); }
+.nav-menu li a:hover::after { transform:translateX(-50%) scaleX(1); }
 
-/* Hamburger Menu */
-.hamburger { display:none; font-size:2rem; cursor:pointer; color:var(--white); background:none; border:none; transition:transform 0.3s ease; }
-.side-menu { position:fixed; top:0; right:-250px; width:250px; height:100%; background:var(--secondary-black); color:var(--white); padding:2rem 1rem; display:flex; flex-direction:column; gap:2rem; transition: right 0.3s ease; z-index:9999; }
-.side-menu a { color:var(--white); text-decoration:none; font-size:1.2rem; font-weight:500; }
+.hamburger { display:none; font-size:2rem; cursor:pointer; color:var(--white); background:none; border:none; }
+
+/* Side Menu */
+.side-menu { position:fixed; top:0; right:-250px; width:250px; height:100%; background:var(--secondary-black); color:var(--white); padding:2rem 1rem; display:flex; flex-direction:column; gap:2rem; transition:right 0.4s cubic-bezier(0.77, 0, 0.175, 1); z-index:9999; }
+.side-menu a { color:var(--white); text-decoration:none; font-size:1.2rem; font-weight:500; position:relative; transition:color 0.3s ease; }
+.side-menu a::after {
+  content:'';
+  position:absolute;
+  bottom:-5px;
+  left:50%;
+  transform:translateX(-50%) scaleX(0);
+  width:70%;
+  height:2px;
+  background:linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+  transition:transform 0.3s ease;
+}
+.side-menu a:hover { color:var(--accent-orange); }
+.side-menu a:hover::after { transform:translateX(-50%) scaleX(1); }
 .side-menu.open { right:0; }
 
-/* Hero Section */
-.hero { background: linear-gradient(135deg, var(--primary-black) 0%, var(--secondary-black) 50%, var(--dark-gray) 100%); height: 70vh; display:flex; align-items:center; justify-content:center; text-align:center; color: var(--white); position:relative; overflow:hidden; }
-.hero::before { content:''; position:absolute; top:0; left:0; right:0; bottom:0; background:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>'); }
-.hero-content { position:relative; z-index:2; max-width:800px; padding:0 2rem; font-family:'Amiri','Scheherazade',serif; }
-.hero-content h1 { font-family:'Amiri','Scheherazade',serif; font-size:4rem; margin-bottom:1.5rem; font-weight:700; letter-spacing:-1px; background:linear-gradient(45deg, var(--white), var(--light-gray)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; animation:fadeInUp 1s ease-out; }
-.hero-content p { font-family:'SF Pro Display','Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size:1.4rem; margin-bottom:2.5rem; opacity:0.9; line-height:1.8; animation:fadeInUp 1s ease-out 0.3s both; }
-.cta-button { font-family:'SF Pro Display','Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background:linear-gradient(135deg, var(--accent-red), var(--accent-orange)); color:var(--white); padding:1.2rem 3rem; border:none; border-radius:50px; font-size:1.2rem; font-weight:600; cursor:pointer; transition:all 0.3s ease; text-decoration:none; display:inline-block; box-shadow:0 6px 20px rgba(231,76,60,0.3); animation:fadeInUp 1s ease-out 0.6s both; }
-.cta-button:hover { transform:translateY(-3px) scale(1.05); box-shadow:0 10px 30px rgba(231,76,60,0.4); }
-@keyframes fadeInUp { from{opacity:0; transform:translateY(30px);} to{opacity:1; transform:translateY(0);} }
+/* Hero */
+.hero { background: linear-gradient(135deg, var(--primary-black) 0%, var(--secondary-black) 50%, #404040 100%); height: 70vh; display:flex; align-items:center; justify-content:center; text-align:center; color: var(--white); }
+.hero-content { max-width:800px; padding:0 2rem; }
+.hero-content h1 { font-size:4rem; margin-bottom:1.5rem; font-weight:700; background:linear-gradient(45deg, var(--white), var(--light-gray)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.hero-content p { font-size:1.4rem; margin-bottom:2.5rem; opacity:0.9; line-height:1.8; }
+.cta-button { background:linear-gradient(135deg, var(--accent-red), var(--accent-orange)); color:var(--white); padding:1.2rem 3rem; border:none; border-radius:50px; font-size:1.2rem; font-weight:600; cursor:pointer; text-decoration:none; }
 
-/* Products Section */
+/* Products */
 .products { padding:6rem 0; background:var(--light-gray); }
 .product-section { margin-bottom:4rem; text-align:center; }
-.product-section .section-title { font-size:2.5rem; font-weight:700; display:inline-block; position:relative; margin-bottom:0.5rem; }
-.product-section .section-underline { width:80px; height:4px; background:linear-gradient(90deg, var(--accent-blue), var(--accent-purple)); margin:0.5rem auto 2rem auto; border-radius:2px; }
+.section-title { font-size:2rem; font-weight:700; display:inline-block; margin-bottom:0.5rem; }
+.section-underline { height:2px; background:black; margin:0 auto 2rem auto; border-radius:1px; width:fit-content; min-width:60px; }
 .products-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:2rem; max-width:1200px; margin:0 auto; padding:0 2rem; }
-.product-card { background:var(--white); border-radius:15px; overflow:hidden; text-align:center; padding:1rem; transition:transform 0.3s ease; cursor:pointer; }
+.product-card { background:var(--white); border-radius:15px; overflow:hidden; text-align:center; padding:1rem; cursor:pointer; transition:transform 0.3s ease; position:relative; }
 .product-card:hover { transform:translateY(-5px); }
-.product-card img { width:100%; height:150px; object-fit:cover; border-radius:10px; margin-bottom:0.8rem; }
+.product-card img { width:100%; height:360px; object-fit:cover; border-radius:10px; margin-bottom:0.8rem; transition:filter 0.3s ease; }
 .product-card span { font-weight:bold; color:var(--primary-black); }
 
-/* Contact Section */
+/* النص "اضغط" فوق اللوحة */
+.product-card::after {
+  content:"اضغط";
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%) scale(0.8);
+  background:rgba(0,0,0,0.6);
+  color:#fff;
+  padding:0.5rem 1.5rem;
+  border-radius:8px;
+  opacity:0;
+  font-size:1.2rem;
+  font-weight:bold;
+  transition:all 0.3s ease;
+}
+.product-card:hover::after { opacity:1; transform:translate(-50%, -50%) scale(1); }
+.product-card:hover img { filter:blur(2px) brightness(0.8); }
+
+/* Contact */
 .contact { padding:6rem 0; background:var(--white); text-align:center; }
-.contact h2 { font-family:'Amiri','Scheherazade',serif; font-size:2rem; margin-bottom:0.5rem; position:relative; display:inline-block; }
+.contact h2 { font-size:2rem; margin-bottom:0.5rem; }
 .contact h2::after { content:''; display:block; width:60px; height:2px; background:black; margin:0.5rem auto 0 auto; border-radius:1px; }
-.contact p { font-family:'Amiri','Scheherazade',serif; font-size:1.2rem; line-height:2; margin-top:1rem; }
-.contact a { color:var(--whatsapp-green); text-decoration:none; font-weight:bold; }
+.contact p { font-size:1.2rem; line-height:2; margin-top:1rem; }
+.contact a { color:#ac0000; text-decoration:none; font-weight:bold; position:relative; transition:all 0.3s ease; }
+.contact a::after {
+  content:'»';
+  position:absolute;
+  right:-15px;
+  opacity:0;
+  transition:all 0.3s ease;
+}
+.contact a:hover { color:var(--accent-purple); padding-right:10px; }
+.contact a:hover::after { opacity:1; right:-5px; }
 
-/* Responsive for Mobile */
-@media (max-width: 768px) {
+/* Modal */
+#modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); justify-content:center; align-items:center; z-index:9999; }
+.modal-content { background:#fff; padding:1rem; border-radius:15px; position:relative; max-width:600px; width:90%; text-align:center; }
+.modal-content img { width:100%; height:auto; border-radius:10px; }
+.modal-close {
+  position:absolute;
+  top:10px;
+  right:10px;
+  font-size:1rem;
+  cursor:pointer;
+  background:#e74c3c;
+  color:#fff;
+  padding:0.4rem 1rem;
+  border:none;
+  border-radius:8px;
+  font-weight:bold;
+  transition:background 0.3s ease;
+}
+.modal-close:hover { background:#c0392b; }
+.modal-close i { display:none; }
+.modal-close::after { content:"رجوع"; }
+.modal-arrow { position:absolute; top:50%; transform:translateY(-50%); font-size:2rem; color:#333; background:rgba(255,255,255,0.6); border:none; border-radius:50%; cursor:pointer; padding:0.2rem 0.5rem; }
+#prevBtn { left:-30px; }
+#nextBtn { right:-30px; }
+
+/* Responsive */
+@media (max-width:768px){
     .nav-menu { display:none; }
-    .hamburger { display:block; font-size:1.6rem; }
-
-    .hero-content h1 { font-size:2.2rem; }
-    .hero-content p { font-size:1rem; margin-bottom:1.5rem; }
-    .cta-button { padding:0.8rem 1.8rem; font-size:1rem; }
-
-    .product-section .section-title { font-size:1.8rem; }
-    .product-section .section-underline { width:60px; height:3px; }
+    .hamburger { display:block; }
     .products-grid { grid-template-columns:1fr; gap:1rem; padding:0 1rem; }
-
-    .product-card { padding:0.8rem; }
-    .product-card img { height:120px; }
-    .product-card span { font-size:0.9rem; }
-
-    .contact h2 { font-size:1.5rem; }
-    .contact p { font-size:1rem; }
-    .side-menu { width:220px; padding:1.5rem; gap:1.5rem; }
-    .side-menu a { font-size:1rem; }
 }
 </style>
 </head>
@@ -100,15 +153,12 @@ body { font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background:v
 
 <header class="header">
 <div class="nav-container">
-    <div class="logo">
-        <i class="fas fa-palette"></i> معرض الكوثر
-    </div>
+    <div class="logo"><i class="fas fa-palette"></i> معرض الكوثر</div>
     <nav>
         <ul class="nav-menu">
             <li><a href="#home" class="scroll-link">الرئيسية</a></li>
-            <li><a href="#contact" class="scroll-link">التواصل</a></li>
             <li><a href="#products" class="scroll-link">اللوحات</a></li>
-            <li><a href="#payment">الدفع</a></li>
+            <li><a href="#contact" class="scroll-link">التواصل</a></li>
         </ul>
     </nav>
     <button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
@@ -118,7 +168,6 @@ body { font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background:v
 <div class="side-menu" id="sideMenu">
     <a href="#home" class="scroll-link">الرئيسية</a>
     <a href="#products" class="scroll-link">اللوحات</a>
-    <a href="#payment">الدفع</a>
     <a href="#contact" class="scroll-link">التواصل</a>
 </div>
 
@@ -126,29 +175,73 @@ body { font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background:v
     <div class="hero-content">
         <h1>فن أصيل بريشة محترفة</h1>
         <p>اكتشف مجموعة رائعة من اللوحات اليدوية الأصيلة المرسومة بعناية فائقة</p>
-        <a href="#products" class="cta-button scroll-link"><i class="fas fa-paint-brush"></i> تصفح اللوحات</a>
+          <a href="#products" class="cta-button scroll-link"><i class="fas fa-paint-brush"></i> تصفح اللوحات</a>
     </div>
 </section>
 
 <section class="products" id="products">
-<!-- الأقسام والمنتجات كما بالكود السابق -->
+  <div class="product-section">
+    <h2 class="section-title">الجديد</h2>
+    <div class="section-underline"></div>
+    <div class="products-grid">
+      <div class="product-card" data-images='["fotoa1.png","fotoa2.png","fotoa3.png"]'><img src="fotoa1.png" alt="لوحة  "><span>لوحة  </span></div>
+      <div class="product-card" data-images='["fotop1.png","fotop2.png"]'><img src="fotop1.png" alt="لوحة  "><span>لوحة  </span></div>
+      <div class="product-card" data-images='["fotod1.png","fotod2.png"]'><img src="fotod1.png" alt="لوحة  "><span>لوحة  </span></div>
+    </div>
+  </div>
+
+  <div class="product-section">
+    <h2 class="section-title">الأكثر مبيعاً</h2>
+    <div class="section-underline"></div>
+    <div class="products-grid">
+      <div class="product-card" data-images='["fotoe1.png","fotoe2.png","fotoe3.png"]'><img src="fotoe1.png" alt="لوحة  "><span>لوحة  </span></div>
+      <div class="product-card" data-images='["fotob1.png","fotob2.png"]'><img src="fotob1.png" alt="لوحة  "><span>لوحة  </span></div>
+      <div class="product-card" data-images='["fotof1.png"]'><img src="fotof1.png" alt="لوحة  "><span>لوحة  </span></div>
+    </div>
+  </div>
+
+  <div class="product-section">
+    <h2 class="section-title">الكل</h2>
+    <div class="section-underline"></div>
+    <div class="products-grid">
+      <div class="product-card" data-images='["fotoa1.png","fotoa2.png","fotoa3.png"]'><img src="fotoa1.png"><span>لوحة  </span></div>
+      <div class="product-card" data-images='["fotop1.png","fotop2.png"]'><img src="fotop1.png"><span>لوحة  </span></div>
+      <div class="product-card" data-images='["fotod1.png","fotod2.png"]'><img src="fotod1.png"><span>لوحة  </span></div>
+      <div class="product-card" data-images='["fotoe1.png","fotoe2.png","fotoe3.png"]'><img src="fotoe1.png"><span>لوحة  </span></div>
+      <div class="product-card" data-images='["fotob1.png","fotob2.png"]'><img src="fotob1.png"><span>لوحة  </span></div>
+      <div class="product-card" data-images='["fotof1.png"]'><img src="fotof1.png"><span>لوحة  </span></div>
+    </div>
+  </div>
 </section>
 
 <section class="contact" id="contact">
     <h2>تواصل معنا</h2>
     <p>
         البريد الإلكتروني: info@example.com <br>
-        انستاغرام: <a href="https://www.instagram.com/e_711e" target="_blank">اضغط هنا للانستغرام</a> <br>
-        تليجرام: <a href="https://t.me/p1_2p" target="_blank" style="color:#1DA1F2;">اضغط هنا للتليجرام</a>
+        انستاغرام: <a href="https://www.instagram.com/e_711e" target="_blank">اضغط هنا</a> <br>
+        تليجرام: <a href="https://t.me/p1_2p" target="_blank" style="color:#1DA1F2;">اضغط هنا</a>
     </p>
 </section>
 
 <footer style="background: var(--secondary-black); color: var(--white); text-align:center; padding:1.5rem 0; font-size:0.95rem;">
-    جميع الحقوق محفوظة لمتجر معرض الكوثر &copy; 2025
+    جميع الحقوق محفوظة لمعرض الكوثر &copy; 2025
 </footer>
 
+<!-- Modal -->
+<div id="modal">
+  <div class="modal-content">
+    <button class="modal-close" id="modalClose"><i class="fas fa-times"></i></button>
+    <button class="modal-arrow" id="prevBtn">&#8249;</button>
+    <img src="" id="modalImg">
+    <button class="modal-arrow" id="nextBtn">&#8250;</button>
+    <h3 id="modalName"></h3>
+  </div>
+</div>
+
 <script>
+// Smooth scroll
 const links = document.querySelectorAll('.scroll-link');
+const sideMenu = document.getElementById('sideMenu');
 links.forEach(link => {
     link.addEventListener('click', function(e){
         e.preventDefault();
@@ -158,11 +251,51 @@ links.forEach(link => {
     });
 });
 
+// Hamburger
 const hamburger = document.getElementById('hamburger');
-const sideMenu = document.getElementById('sideMenu');
 hamburger.addEventListener('click', () => { sideMenu.classList.toggle('open'); });
 
-function toggleCart() { alert('هنا سيتم فتح السلة'); }
+// Modal
+const modal = document.getElementById('modal');
+const modalImg = document.getElementById('modalImg');
+const modalName = document.getElementById('modalName');
+const modalClose = document.getElementById('modalClose');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+
+let currentImages = [];
+let currentIndex = 0;
+
+document.querySelectorAll('.product-card').forEach(card => {
+    card.addEventListener('click', () => {
+        currentImages = JSON.parse(card.dataset.images);
+        currentIndex = 0;
+        modalImg.src = currentImages[currentIndex];
+        modalName.textContent = card.querySelector('span').textContent;
+        modal.style.display = "flex";
+    });
+});
+
+modalClose.addEventListener('click', () => { modal.style.display = "none"; });
+
+modal.addEventListener('click', (e) => {
+    if(e.target === modal) modal.style.display = "none";
+});
+
+prevBtn.addEventListener('click', () => {
+    if(currentImages.length > 1){
+        currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+        modalImg.src = currentImages[currentIndex];
+    }
+});
+
+nextBtn.addEventListener('click', () => {
+    if(currentImages.length > 1){
+        currentIndex = (currentIndex + 1) % currentImages.length;
+        modalImg.src = currentImages[currentIndex];
+    }
+});
 </script>
+
 </body>
 </html>
